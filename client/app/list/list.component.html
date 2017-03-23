@@ -1,0 +1,30 @@
+<div class="jumbotron">
+    <h1 class="text-center">Alurapic</h1>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <form>
+                 <div class="input-group">
+                    <span class="input-group-btn">
+                        <!-- routerLink no lugar de href para que a aplicação apenas troque
+                            o contexto ao invés de recarregar a página-->
+                        <a [routerLink]="['cadastro']" class="btn btn-primary">
+                            Nova foto
+                        </a>
+                    </span>
+                </div> 
+            </form>
+        </div> <!-- fim col-md-12 -->
+    </div> <!-- fim row -->
+    <br>
+
+    <div class="row">
+        <!-- [UNIDIRECIONAL] - DOS DADOS PARA A VIEW -->
+        <panel *ngFor="let foto of fotos" [title]="foto.titulo" class="col-md-2">
+            <photo  [url]="foto.url" [title]="foto.titulo"></photo>
+            <!-- {{BIDIRECIONAL}} DOS DADOS PARA A VIEW E VICE VERSA -->
+            <!-- <photo *ngFor="let foto of fotos" url="{{foto.url}}" title="{{foto.titulo}}"></photo> -->
+        </panel>
+    </div>
+</div>

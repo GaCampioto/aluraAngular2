@@ -3,11 +3,10 @@ import { Http } from '@angular/http';
 
 @Component({
     moduleId : module.id,
-    selector:'app',
-    templateUrl:'./app.component.html'
+    selector:'list',
+    templateUrl:'./list.component.html'
 })
-
-export class AppComponent{
+export class ListComponent{
 
     fotos : Object [] = [];
 
