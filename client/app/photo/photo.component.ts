@@ -8,6 +8,7 @@ import { Component, Input } from '@angular/core';
 export class PhotoComponent{
     //@Input() possibilita que o componente receba valores externos
     //Ao receber valores externos chamamos os atributos de inbound properties
-    @Input() url;
-    @Input() title;
+    @Input() titulo: string = '';
+    @Input() url: string = '';
+    descricao: string;
 }

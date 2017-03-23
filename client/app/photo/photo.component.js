@@ -12,17 +12,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PhotoComponent = (function () {
     function PhotoComponent() {
+        //@Input() possibilita que o componente receba valores externos
+        //Ao receber valores externos chamamos os atributos de inbound properties
+        this.titulo = '';
+        this.url = '';
     }
     return PhotoComponent;
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
-], PhotoComponent.prototype, "url", void 0);
+    __metadata("design:type", String)
+], PhotoComponent.prototype, "titulo", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
-], PhotoComponent.prototype, "title", void 0);
+    __metadata("design:type", String)
+], PhotoComponent.prototype, "url", void 0);
 PhotoComponent = __decorate([
     core_1.Component({
         moduleId: module.id,

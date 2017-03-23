@@ -13,6 +13,8 @@
                             Nova foto
                         </a>
                     </span>
+                    <!-- (event binding) -->
+                    <input class="form-control" #searchText (keyup)="0" placeholder="filtrar pelo título da foto">
                 </div> 
             </form>
         </div> <!-- fim col-md-12 -->
@@ -21,8 +23,8 @@
 
     <div class="row">
         <!-- [UNIDIRECIONAL] - DOS DADOS PARA A VIEW -->
-        <panel *ngFor="let foto of fotos" [title]="foto.titulo" class="col-md-2">
-            <photo  [url]="foto.url" [title]="foto.titulo"></photo>
+        <panel *ngFor="let photo of photos | filterByTitle:searchText.value" [title]="photo.titulo | uppercase" class="col-md-2">
+            <photo  [url]="photo.url" [titulo]="photo.titulo"></photo>
             <!-- {{BIDIRECIONAL}} DOS DADOS PARA A VIEW E VICE VERSA -->
             <!-- <photo *ngFor="let foto of fotos" url="{{foto.url}}" title="{{foto.titulo}}"></photo> -->
         </panel>

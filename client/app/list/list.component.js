@@ -14,10 +14,10 @@ var http_1 = require("@angular/http");
 var ListComponent = (function () {
     function ListComponent(http) {
         var _this = this;
-        this.fotos = [];
+        this.photos = [];
         http.get('v1/fotos')
             .map(function (res) { return res.json(); })
-            .subscribe(function (fotos) { return _this.fotos = fotos; }, function (error) { return console.log(error); });
+            .subscribe(function (photos) { return _this.photos = photos; }, function (error) { return console.log(error); });
     }
     return ListComponent;
 }());
