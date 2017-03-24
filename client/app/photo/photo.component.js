@@ -16,6 +16,7 @@ var PhotoComponent = (function () {
         //Ao receber valores externos chamamos os atributos de inbound properties
         this.titulo = '';
         this.url = '';
+        this.descricao = '';
     }
     return PhotoComponent;
 }());

@@ -10,5 +10,5 @@ export class PhotoComponent{
     //Ao receber valores externos chamamos os atributos de inbound properties
     @Input() titulo: string = '';
     @Input() url: string = '';
-    descricao: string;
+    descricao: string = '';
 }
