@@ -10,14 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var http_1 = require("@angular/http");
+var photo_service_1 = require("../photo/photo.service");
 var ListComponent = (function () {
-    function ListComponent(http) {
+    function ListComponent(photoService) {
         var _this = this;
         this.photos = [];
-        http.get('v1/fotos')
-            .map(function (res) { return res.json(); })
+        photoService
+            .getAll()
             .subscribe(function (photos) { return _this.photos = photos; }, function (error) { return console.log(error); });
+        var stringBase64 = 'JBKNU57SBOLJIW4AOMN6VTF5IT1RMSME:1A8BOVJBVQKKG8ARDKI4UFAGEUZQASBS8WLKISZY';
+        console.log(btoa(stringBase64));
+        console.log(atob(btoa(stringBase64)));
+        console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
     }
     return ListComponent;
 }());
@@ -27,7 +31,7 @@ ListComponent = __decorate([
         selector: 'list',
         templateUrl: './list.component.html'
     }),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [photo_service_1.PhotoService])
 ], ListComponent);
 exports.ListComponent = ListComponent;
 //# sourceMappingURL=list.component.js.map

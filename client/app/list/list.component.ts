@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Http } from '@angular/http';
+import { PhotoComponent } from '../photo/photo.component';
+import { PhotoService } from '../photo/photo.service';
 
 @Component({
     moduleId : module.id,
@@ -8,14 +10,18 @@ import { Http } from '@angular/http';
 })
 export class ListComponent{
 
-    photos : Object [] = [];
+    photos : PhotoComponent [] = [];
 
-    constructor(http: Http){
-        http.get('v1/fotos')
-            .map(res => res.json())
+    constructor(photoService: PhotoService){
+        photoService
+            .getAll()
             .subscribe(
                 photos => this.photos = photos,
                 error => console.log(error)
             );
+        let stringBase64 = 'JBKNU57SBOLJIW4AOMN6VTF5IT1RMSME:1A8BOVJBVQKKG8ARDKI4UFAGEUZQASBS8WLKISZY';
+        console.log(btoa(stringBase64));
+        console.log(atob(btoa(stringBase64)));
+        console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
     }
 }

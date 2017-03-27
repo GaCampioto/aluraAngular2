@@ -29,7 +29,8 @@ PanelComponent = __decorate([
     core_1.Component({
         moduleId: module.id,
         selector: 'panel',
-        templateUrl: './panel.component.html'
+        templateUrl: './panel.component.html',
+        styleUrls: ['./panel.component.css']
     })
 ], PanelComponent);
 exports.PanelComponent = PanelComponent;

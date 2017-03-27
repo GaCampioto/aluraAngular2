@@ -11,13 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var photo_component_1 = require("../photo/photo.component");
-var http_1 = require("@angular/http");
+var photo_service_1 = require("../photo/photo.service");
 //Imports necessários para fazer a validação dos dados do form
 var forms_1 = require("@angular/forms");
 var RegisterComponent = (function () {
-    function RegisterComponent(http, formBuilder) {
+    function RegisterComponent(photoService, formBuilder) {
         this.photo = new photo_component_1.PhotoComponent();
-        this.http = http;
+        this.photoService = photoService;
         //Criação do form e da validações que serão feitas
         //É necessário incluir todos os campos do form mesmo que não exista validação
         this.registerForm = formBuilder.group({
@@ -30,9 +30,8 @@ var RegisterComponent = (function () {
         var _this = this;
         event.preventDefault();
         console.log(this.photo);
-        var header = new http_1.Headers();
-        header.append('Content-type', 'Application/JSON');
-        this.http.post('v1/fotos', JSON.stringify(this.photo), { headers: header })
+        this.photoService
+            .save(this.photo)
             .subscribe(function () {
             _this.photo = new photo_component_1.PhotoComponent();
             console.log('Foto Salva com sucesso!');
@@ -46,7 +45,7 @@ RegisterComponent = __decorate([
         selector: 'register',
         templateUrl: './register.component.html'
     }),
-    __metadata("design:paramtypes", [http_1.Http, forms_1.FormBuilder])
+    __metadata("design:paramtypes", [photo_service_1.PhotoService, forms_1.FormBuilder])
 ], RegisterComponent);
 exports.RegisterComponent = RegisterComponent;
 //# sourceMappingURL=register.component.js.map
