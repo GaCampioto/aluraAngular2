@@ -10,6 +10,7 @@ var core_1 = require("@angular/core");
 var common_1 = require("@angular/common");
 var photo_component_1 = require("./photo.component");
 var photo_pipes_1 = require("./photo.pipes");
+var photo_service_1 = require("./photo.service");
 var PhotoModule = (function () {
     function PhotoModule() {
     }
@@ -19,7 +20,8 @@ PhotoModule = __decorate([
     core_1.NgModule({
         imports: [common_1.CommonModule],
         declarations: [photo_component_1.PhotoComponent, photo_pipes_1.FilterByTitle],
-        exports: [photo_component_1.PhotoComponent, photo_pipes_1.FilterByTitle]
+        exports: [photo_component_1.PhotoComponent, photo_pipes_1.FilterByTitle],
+        providers: [photo_service_1.PhotoService]
     })
 ], PhotoModule);
 exports.PhotoModule = PhotoModule;

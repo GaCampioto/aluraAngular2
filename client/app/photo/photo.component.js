@@ -17,6 +17,7 @@ var PhotoComponent = (function () {
         this.titulo = '';
         this.url = '';
         this.descricao = '';
+        this._id = '';
     }
     return PhotoComponent;
 }());

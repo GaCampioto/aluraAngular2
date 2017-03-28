@@ -9,11 +9,13 @@ import { PhotoService } from '../photo/photo.service';
     templateUrl:'./list.component.html'
 })
 export class ListComponent{
-
+    photoService: PhotoService;
     photos : PhotoComponent [] = [];
+    message: string = '';
 
     constructor(photoService: PhotoService){
-        photoService
+        this.photoService = photoService;
+        this.photoService
             .getAll()
             .subscribe(
                 photos => this.photos = photos,
@@ -23,5 +25,23 @@ export class ListComponent{
         console.log(btoa(stringBase64));
         console.log(atob(btoa(stringBase64)));
         console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
+    }
+
+    remove(photo: PhotoComponent) : void{
+        this.photoService
+            .remove(photo)
+            .subscribe(
+                () => {
+                    let newPhotos = this.photos.slice(0);
+                    let index = this.photos.indexOf(photo);
+                    newPhotos.splice(index, 1);
+                    this.photos = newPhotos;
+                    this.message = 'Foto removida com sucesso';
+                },
+                error => {
+                    console.log(error);
+                    this.message = 'Erro ao tentar remover a foto';
+                }
+            );
     }
 }

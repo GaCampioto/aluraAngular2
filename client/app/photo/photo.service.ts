@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
 import { Http, Headers, Response } from '@angular/http';
 import { PhotoComponent } from './photo.component';
+import { Injectable } from '@angular/core';
 
+@Injectable()
 export class PhotoService{
     http: Http;
     headers: Headers;
@@ -23,5 +25,10 @@ export class PhotoService{
         return this.http
             .get(this.url)
             .map(res => res.json());
+    }
+
+    remove(photo): Observable<Response>{
+        return this.http
+                    .delete(this.url + '/' + photo._id);
     }
 }

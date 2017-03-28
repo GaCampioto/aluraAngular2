@@ -15,7 +15,9 @@ var ListComponent = (function () {
     function ListComponent(photoService) {
         var _this = this;
         this.photos = [];
-        photoService
+        this.message = '';
+        this.photoService = photoService;
+        this.photoService
             .getAll()
             .subscribe(function (photos) { return _this.photos = photos; }, function (error) { return console.log(error); });
         var stringBase64 = 'JBKNU57SBOLJIW4AOMN6VTF5IT1RMSME:1A8BOVJBVQKKG8ARDKI4UFAGEUZQASBS8WLKISZY';
@@ -23,6 +25,21 @@ var ListComponent = (function () {
         console.log(atob(btoa(stringBase64)));
         console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
     }
+    ListComponent.prototype.remove = function (photo) {
+        var _this = this;
+        this.photoService
+            .remove(photo)
+            .subscribe(function () {
+            var newPhotos = _this.photos.slice(0);
+            var index = _this.photos.indexOf(photo);
+            newPhotos.splice(index, 1);
+            _this.photos = newPhotos;
+            _this.message = 'Foto removida com sucesso';
+        }, function (error) {
+            console.log(error);
+            _this.message = 'Erro ao tentar remover a foto';
+        });
+    };
     return ListComponent;
 }());
 ListComponent = __decorate([
