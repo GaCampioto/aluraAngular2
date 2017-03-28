@@ -32,6 +32,7 @@ export class ListComponent{
             .remove(photo)
             .subscribe(
                 () => {
+                    //É necessário alterar a referência da lista de photos para a página renderizar novamente
                     let newPhotos = this.photos.slice(0);
                     let index = this.photos.indexOf(photo);
                     newPhotos.splice(index, 1);

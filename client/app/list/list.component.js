@@ -30,6 +30,7 @@ var ListComponent = (function () {
         this.photoService
             .remove(photo)
             .subscribe(function () {
+            //É necessário alterar a referência da lista de photos para a página renderizar novamente
             var newPhotos = _this.photos.slice(0);
             var index = _this.photos.indexOf(photo);
             newPhotos.splice(index, 1);
