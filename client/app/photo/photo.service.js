@@ -19,8 +19,19 @@ var PhotoService = (function () {
         this.url = 'v1/fotos';
     }
     PhotoService.prototype.save = function (photo) {
+        if (photo._id) {
+            return this.http
+                .put(this.url + '/' + photo._id, JSON.stringify(photo), { headers: this.headers });
+        }
+        else {
+            return this.http
+                .post(this.url, JSON.stringify(photo), { headers: this.headers });
+        }
+    };
+    PhotoService.prototype.get = function (id) {
         return this.http
-            .post(this.url, JSON.stringify(photo), { headers: this.headers });
+            .get(this.url + '/' + id)
+            .map(function (res) { return res.json(); });
     };
     PhotoService.prototype.getAll = function () {
         return this.http

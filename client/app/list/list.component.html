@@ -25,7 +25,9 @@
     <div class="row">
         <!-- [UNIDIRECIONAL] - DOS DADOS PARA A VIEW -->
         <panel *ngFor="let photo of photos | filterByTitle:searchText.value" [title]="photo.titulo | uppercase" class="col-md-2">
-            <photo  [url]="photo.url" [titulo]="photo.titulo"></photo>
+            <a [routerLink]="['cadastro', photo._id]">
+                <photo  [url]="photo.url" [titulo]="photo.titulo"></photo>
+            </a>
             <button class="btn btn-danger btn-block" (click)="remove(photo)">Remover</button>
         </panel>
     </div>

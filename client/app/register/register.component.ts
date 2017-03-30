@@ -4,6 +4,7 @@ import { PhotoService } from '../photo/photo.service';
 import { Http,Headers } from '@angular/http'
 //Imports necessários para fazer a validação dos dados do form
 import { FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     moduleId : module.id,
@@ -11,13 +12,25 @@ import { FormGroup, FormBuilder, Validators} from '@angular/forms'
     templateUrl:'./register.component.html'
 })
 export class RegisterComponent {
-    photo : PhotoComponent = new PhotoComponent();
+    photo: PhotoComponent = new PhotoComponent();
     photoService: PhotoService;
     //Deve ter o mesmo nome do form na página
     registerForm: FormGroup;
+    router: Router;
+    route: ActivatedRoute;
 
-    constructor(photoService: PhotoService, formBuilder: FormBuilder){
+    constructor(photoService: PhotoService, formBuilder: FormBuilder, route: ActivatedRoute, router: Router){
         this.photoService = photoService;
+        this.route = route;
+        this.router = router;
+        let id: string;
+        this.route.params.subscribe(params => id = params['id']);
+        if(id){
+            this.photoService
+                .get(id)
+                .subscribe(photo => this.photo = photo,
+                            error => console.log(error));
+        }
         //Criação do form e da validações que serão feitas
         //É necessário incluir todos os campos do form mesmo que não exista validação
         this.registerForm = formBuilder.group({
@@ -38,5 +51,6 @@ export class RegisterComponent {
                     console.log('Foto Salva com sucesso!');
                 },
                 error => console.log(error));
+        this.router.navigate(['']);
     }
 }

@@ -17,8 +17,19 @@ export class PhotoService{
     }
 
     save(photo: PhotoComponent): Observable<Response>{
+        if(photo._id){
+            return this.http
+                .put(this.url + '/' + photo._id, JSON.stringify(photo), {headers : this.headers});
+        } else {
+            return this.http
+            .post(this.url, JSON.stringify(photo), {headers : this.headers});
+        }
+    }
+
+    get(id: string): Observable<PhotoComponent> {
         return this.http
-            .post(this.url, JSON.stringify(photo), {headers : this.headers})
+                    .get(this.url + '/' + id)
+                    .map(res => res.json());
     }
 
     getAll(): Observable<PhotoComponent[]>{

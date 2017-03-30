@@ -8,6 +8,7 @@ var register_component_1 = require("./register/register.component");
 var appRoutes = [
     { path: '', component: list_component_1.ListComponent },
     { path: 'cadastro', component: register_component_1.RegisterComponent },
+    { path: 'cadastro/:id', component: register_component_1.RegisterComponent },
     { path: '**', component: list_component_1.ListComponent }
 ];
 //"Compilando" as rotas configuradas

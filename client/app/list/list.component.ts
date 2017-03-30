@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 import { PhotoComponent } from '../photo/photo.component';
 import { PhotoService } from '../photo/photo.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     moduleId : module.id,
@@ -13,7 +14,7 @@ export class ListComponent{
     photos : PhotoComponent [] = [];
     message: string = '';
 
-    constructor(photoService: PhotoService){
+    constructor(photoService: PhotoService, route:ActivatedRoute){
         this.photoService = photoService;
         this.photoService
             .getAll()
@@ -21,10 +22,6 @@ export class ListComponent{
                 photos => this.photos = photos,
                 error => console.log(error)
             );
-        let stringBase64 = 'JBKNU57SBOLJIW4AOMN6VTF5IT1RMSME:1A8BOVJBVQKKG8ARDKI4UFAGEUZQASBS8WLKISZY';
-        console.log(btoa(stringBase64));
-        console.log(atob(btoa(stringBase64)));
-        console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
     }
 
     remove(photo: PhotoComponent) : void{

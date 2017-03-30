@@ -11,8 +11,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var photo_service_1 = require("../photo/photo.service");
+var router_1 = require("@angular/router");
 var ListComponent = (function () {
-    function ListComponent(photoService) {
+    function ListComponent(photoService, route) {
         var _this = this;
         this.photos = [];
         this.message = '';
@@ -20,10 +21,6 @@ var ListComponent = (function () {
         this.photoService
             .getAll()
             .subscribe(function (photos) { return _this.photos = photos; }, function (error) { return console.log(error); });
-        var stringBase64 = 'JBKNU57SBOLJIW4AOMN6VTF5IT1RMSME:1A8BOVJBVQKKG8ARDKI4UFAGEUZQASBS8WLKISZY';
-        console.log(btoa(stringBase64));
-        console.log(atob(btoa(stringBase64)));
-        console.log(atob('MDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDEwMTAxMDE6QUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQkFCQUJBQg=='));
     }
     ListComponent.prototype.remove = function (photo) {
         var _this = this;
@@ -49,7 +46,7 @@ ListComponent = __decorate([
         selector: 'list',
         templateUrl: './list.component.html'
     }),
-    __metadata("design:paramtypes", [photo_service_1.PhotoService])
+    __metadata("design:paramtypes", [photo_service_1.PhotoService, router_1.ActivatedRoute])
 ], ListComponent);
 exports.ListComponent = ListComponent;
 //# sourceMappingURL=list.component.js.map
