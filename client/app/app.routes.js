@@ -8,6 +8,7 @@ var register_component_1 = require("./register/register.component");
 var appRoutes = [
     { path: '', component: list_component_1.ListComponent },
     { path: 'cadastro', component: register_component_1.RegisterComponent },
+    //Definição do nome do param recebido pela url que será usado na hora de recuperar o valor
     { path: 'cadastro/:id', component: register_component_1.RegisterComponent },
     { path: '**', component: list_component_1.ListComponent }
 ];

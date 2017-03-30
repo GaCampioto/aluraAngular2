@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 const appRoutes: Routes = [
     { path: '', component: ListComponent },
     { path:'cadastro', component: RegisterComponent },
+    //Definição do nome do param recebido pela url que será usado na hora de recuperar o valor
     { path:'cadastro/:id', component: RegisterComponent },
     { path:'**', component: ListComponent}
 ];

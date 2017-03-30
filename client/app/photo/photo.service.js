@@ -19,6 +19,7 @@ var PhotoService = (function () {
         this.url = 'v1/fotos';
     }
     PhotoService.prototype.save = function (photo) {
+        //Verificar se a photo tem _id, se sim realizar atualização(put), se não realizar inserção (post)
         if (photo._id) {
             return this.http
                 .put(this.url + '/' + photo._id, JSON.stringify(photo), { headers: this.headers });

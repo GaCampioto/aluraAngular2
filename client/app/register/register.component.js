@@ -14,6 +14,7 @@ var photo_component_1 = require("../photo/photo.component");
 var photo_service_1 = require("../photo/photo.service");
 //Imports necessários para fazer a validação dos dados do form
 var forms_1 = require("@angular/forms");
+//Componentes utilizados para recuperar parametro enviado e navegar para outras rotas
 var router_1 = require("@angular/router");
 var RegisterComponent = (function () {
     function RegisterComponent(photoService, formBuilder, route, router) {
@@ -23,6 +24,7 @@ var RegisterComponent = (function () {
         this.route = route;
         this.router = router;
         var id;
+        //Recuperando o valor passado na URL de acordo com o curinga inserido em app.routes
         this.route.params.subscribe(function (params) { return id = params['id']; });
         if (id) {
             this.photoService
