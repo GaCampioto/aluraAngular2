@@ -20,6 +20,7 @@ var RegisterComponent = (function () {
     function RegisterComponent(photoService, formBuilder, route, router) {
         var _this = this;
         this.photo = new photo_component_1.PhotoComponent();
+        this.message = '';
         this.photoService = photoService;
         this.route = route;
         this.router = router;
@@ -45,11 +46,17 @@ var RegisterComponent = (function () {
         console.log(this.photo);
         this.photoService
             .save(this.photo)
-            .subscribe(function () {
+            .subscribe(function (res) {
+            _this.message = res.message;
+            console.log(res);
+            if (!res.include) {
+                _this.router.navigate(['']);
+            }
             _this.photo = new photo_component_1.PhotoComponent();
-            console.log('Foto Salva com sucesso!');
-        }, function (error) { return console.log(error); });
-        this.router.navigate(['']);
+        }, function (error) {
+            _this.message = 'Houve um problema ao salvar a foto';
+            console.log(error);
+        });
     };
     return RegisterComponent;
 }());

@@ -1,6 +1,7 @@
 <div class="container">
     <h1 class="text-center">{{photo.titulo}}</h1>
     <!-- [formGroup]="" necessário para que seja feito o binding do form para o component.ts-->
+    <p *ngIf="message.length" class="alert alert-info">{{message}}</p>
     <form [formGroup]="registerForm" class="row" (submit)="save($event)">
         <div class="col-md-6">
             <div class="form-group">

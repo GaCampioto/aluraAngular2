@@ -16,14 +16,16 @@ export class PhotoService{
         this.url = 'v1/fotos';
     }
 
-    save(photo: PhotoComponent): Observable<Response>{
+    save(photo: PhotoComponent): Observable<RegisterMessage>{
         //Verificar se a photo tem _id, se sim realizar atualização(put), se não realizar inserção (post)
         if(photo._id){
             return this.http
-                .put(this.url + '/' + photo._id, JSON.stringify(photo), {headers : this.headers});
+                .put(this.url + '/' + photo._id, JSON.stringify(photo), {headers : this.headers})
+                .map(() => new RegisterMessage('Foto alterada com sucesso!', false));
         } else {
             return this.http
-            .post(this.url, JSON.stringify(photo), {headers : this.headers});
+            .post(this.url, JSON.stringify(photo), {headers : this.headers})
+            .map(() => new RegisterMessage('Foto incluída com sucesso!', true));
         }
     }
 
@@ -42,5 +44,25 @@ export class PhotoService{
     remove(photo): Observable<Response>{
         return this.http
                     .delete(this.url + '/' + photo._id);
+    }
+}
+
+export class RegisterMessage {
+    /* PODE SER SIMPLIFICADO PELO CONSTRUCTOR
+    private _message: string = '';
+    private _include: boolean;
+    */
+
+    constructor(private _message: string, private _include:boolean){
+        this._message = _message;
+        this._include = _include;
+    }
+
+    get message(): string{
+        return this._message;
+    }
+
+    get include(): boolean {
+        return this._include;
     }
 }

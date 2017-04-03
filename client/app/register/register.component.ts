@@ -20,6 +20,7 @@ export class RegisterComponent {
     //Componentes utilizados para recuperar parametro enviado e navegar para outras rotas
     router: Router;
     route: ActivatedRoute;
+    message: string = '';
 
     constructor(photoService: PhotoService, formBuilder: FormBuilder, route: ActivatedRoute, router: Router){
         this.photoService = photoService;
@@ -49,11 +50,17 @@ export class RegisterComponent {
         console.log(this.photo);
         this.photoService
             .save(this.photo)
-            .subscribe( () => {
+            .subscribe( (res) => {
+                    this.message = res.message;
+                    console.log(res);
+                    if(!res.include){
+                        this.router.navigate(['']);
+                    }
                     this.photo = new PhotoComponent();
-                    console.log('Foto Salva com sucesso!');
                 },
-                error => console.log(error));
-        this.router.navigate(['']);
+                error => {
+                    this.message = 'Houve um problema ao salvar a foto';
+                    console.log(error);
+                });
     }
 }

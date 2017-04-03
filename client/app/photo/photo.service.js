@@ -22,11 +22,13 @@ var PhotoService = (function () {
         //Verificar se a photo tem _id, se sim realizar atualização(put), se não realizar inserção (post)
         if (photo._id) {
             return this.http
-                .put(this.url + '/' + photo._id, JSON.stringify(photo), { headers: this.headers });
+                .put(this.url + '/' + photo._id, JSON.stringify(photo), { headers: this.headers })
+                .map(function () { return new RegisterMessage('Foto alterada com sucesso!', false); });
         }
         else {
             return this.http
-                .post(this.url, JSON.stringify(photo), { headers: this.headers });
+                .post(this.url, JSON.stringify(photo), { headers: this.headers })
+                .map(function () { return new RegisterMessage('Foto incluída com sucesso!', true); });
         }
     };
     PhotoService.prototype.get = function (id) {
@@ -50,4 +52,32 @@ PhotoService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], PhotoService);
 exports.PhotoService = PhotoService;
+var RegisterMessage = (function () {
+    /* PODE SER SIMPLIFICADO PELO CONSTRUCTOR
+    private _message: string = '';
+    private _include: boolean;
+    */
+    function RegisterMessage(_message, _include) {
+        this._message = _message;
+        this._include = _include;
+        this._message = _message;
+        this._include = _include;
+    }
+    Object.defineProperty(RegisterMessage.prototype, "message", {
+        get: function () {
+            return this._message;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(RegisterMessage.prototype, "include", {
+        get: function () {
+            return this._include;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return RegisterMessage;
+}());
+exports.RegisterMessage = RegisterMessage;
 //# sourceMappingURL=photo.service.js.map
