@@ -28,7 +28,9 @@
             <a [routerLink]="['cadastro', photo._id]">
                 <photo  [url]="photo.url" [titulo]="photo.titulo"></photo>
             </a>
-            <button class="btn btn-danger btn-block" (click)="remove(photo)">Remover</button>
+            <customButton name="Remover" customStyleClass="btn-danger btn-block" 
+                        action="remove(photo)" popUpInfo="Deseja excluir a foto?"></customButton>
+            <!--<button class="btn btn-danger btn-block" (click)="remove(photo)">Remover</button>-->
         </panel>
     </div>
 </div>
