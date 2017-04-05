@@ -15,14 +15,17 @@ var CustomButton = (function () {
         this.name = 'Ok';
         this.customStyleClass = 'btn-default';
         this.type = 'button';
-        this.disabled = false;
         this.popUpInfo = '';
         this.action = new core_1.EventEmitter();
     }
     CustomButton.prototype.executeAction = function () {
-        if (confirm(this.popUpInfo)) {
-            this.action.emit(null);
+        if (confirm) {
+            if (confirm(this.popUpInfo)) {
+                this.action.emit(null);
+                return;
+            }
         }
+        this.action.emit(null);
     };
     return CustomButton;
 }());
@@ -46,6 +49,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], CustomButton.prototype, "popUpInfo", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], CustomButton.prototype, "confirm", void 0);
 __decorate([
     core_1.Output(),
     __metadata("design:type", Object)

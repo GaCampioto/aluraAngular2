@@ -36,10 +36,8 @@
                             class="form-control"  autocomplete="off">
                 </textarea>
             </div>
-
-            <button type="submit" class="btn btn-primary" [disabled]="registerForm.invalid">
-                Salvar
-            </button>
+            <customButton name="Salvar" type="Submit" 
+                        customStyleClass="btn btn-primary" disabled="{{registerForm.invalid}}"></customButton>
              <a [routerLink]="['']" class="btn btn-primary">Voltar</a>
             <hr>
         </div>
