@@ -10,17 +10,9 @@ export class CustomButton{
     @Input() customStyleClass: string ='btn-default';
     @Input() type: string = 'button';
     @Input() disabled: boolean;
-    @Input() popUpInfo: string = '';
-    @Input() confirm: boolean;
     @Output() action = new EventEmitter();
 
     executeAction(){
-        if(confirm){
-            if(confirm(this.popUpInfo)){
-                this.action.emit(null);
-                return;
-            }
-        }
         this.action.emit(null);
     }
 }

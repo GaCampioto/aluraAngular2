@@ -16,6 +16,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var photo_module_1 = require("./photo/photo.module");
 var http_1 = require("@angular/http");
 var panel_module_1 = require("./panel/panel.module");
+var modal_module_1 = require("./modal/modal.module");
 var customButton_module_1 = require("./customButton/customButton.module");
 var app_routes_1 = require("./app.routes");
 var forms_1 = require("@angular/forms");
@@ -28,7 +29,15 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, photo_module_1.PhotoModule, http_1.HttpModule, panel_module_1.PanelModule, app_routes_1.routing, forms_1.FormsModule, forms_1.ReactiveFormsModule, customButton_module_1.CustomButtonModule],
+        imports: [platform_browser_1.BrowserModule,
+            photo_module_1.PhotoModule,
+            http_1.HttpModule,
+            panel_module_1.PanelModule,
+            app_routes_1.routing,
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
+            customButton_module_1.CustomButtonModule,
+            modal_module_1.ModalModule],
         declarations: [app_component_1.AppComponent, register_component_1.RegisterComponent, list_component_1.ListComponent],
         bootstrap: [app_component_1.AppComponent]
     })

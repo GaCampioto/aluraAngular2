@@ -22,17 +22,19 @@ var ListComponent = (function () {
             .getAll()
             .subscribe(function (photos) { return _this.photos = photos; }, function (error) { return console.log(error); });
     }
-    ListComponent.prototype.remove = function (photo) {
+    ListComponent.prototype.remove = function (photo, panel) {
         var _this = this;
         this.photoService
             .remove(photo)
             .subscribe(function () {
             //É necessário alterar a referência da lista de photos para a página renderizar novamente
-            var newPhotos = _this.photos.slice(0);
-            var index = _this.photos.indexOf(photo);
-            newPhotos.splice(index, 1);
-            _this.photos = newPhotos;
-            _this.message = 'Foto removida com sucesso';
+            panel.fadeOut(function () {
+                var newPhotos = _this.photos.slice(0);
+                var index = _this.photos.indexOf(photo);
+                newPhotos.splice(index, 1);
+                _this.photos = newPhotos;
+                _this.message = 'Foto removida com sucesso';
+            });
         }, function (error) {
             console.log(error);
             _this.message = 'Erro ao tentar remover a foto';

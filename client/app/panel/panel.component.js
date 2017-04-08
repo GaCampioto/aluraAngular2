@@ -11,13 +11,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var PanelComponent = (function () {
-    function PanelComponent() {
+    function PanelComponent(element) {
+        this._element = element;
     }
     PanelComponent.prototype.ngOnInit = function () {
         this.title =
             this.title.length > 7 ?
                 this.title.substr(0, 7) + '...' :
                 this.title;
+    };
+    PanelComponent.prototype.fadeOut = function (callback) {
+        $(this._element.nativeElement).fadeOut(callback);
     };
     return PanelComponent;
 }());
@@ -31,7 +35,8 @@ PanelComponent = __decorate([
         selector: 'panel',
         templateUrl: './panel.component.html',
         styleUrls: ['./panel.component.css']
-    })
+    }),
+    __metadata("design:paramtypes", [core_1.ElementRef])
 ], PanelComponent);
 exports.PanelComponent = PanelComponent;
 //# sourceMappingURL=panel.component.js.map

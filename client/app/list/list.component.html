@@ -24,13 +24,12 @@
 
     <div class="row">
         <!-- [UNIDIRECIONAL] - DOS DADOS PARA A VIEW -->
-        <panel *ngFor="let photo of photos | filterByTitle:searchText.value" [title]="photo.titulo | uppercase" class="col-md-2">
+        <panel #panel *ngFor="let photo of photos | filterByTitle:searchText.value" [title]="photo.titulo | uppercase" class="col-md-2">
             <a [routerLink]="['cadastro', photo._id]">
                 <photo  [url]="photo.url" [titulo]="photo.titulo"></photo>
             </a>
-            <customButton name="Remover" customStyleClass="btn-danger btn-block" 
-                        (action)="remove(photo)" popUpInfo="Deseja excluir a foto?"
-                        confirm=true></customButton>
+            <customButton name="Remover" customStyleClass="btn-danger btn-block" (action)="modal.show()"></customButton>
+            <modal #modal text="Deseja excluir a foto?" (confirm)="remove(photo, panel)"></modal>
             <!--<button class="btn btn-danger btn-block" (click)="remove(photo)">Remover</button>-->
         </panel>
     </div>

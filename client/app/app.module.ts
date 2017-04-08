@@ -9,6 +9,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PhotoModule } from './photo/photo.module';
 import { HttpModule } from '@angular/http';
 import { PanelModule } from './panel/panel.module';
+import { ModalModule } from './modal/modal.module';
 import { CustomButtonModule } from './customButton/customButton.module';
 import { routing } from './app.routes';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -16,7 +17,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import 'rxjs/add/operator/map';
 
 @NgModule({
-    imports : [BrowserModule, PhotoModule, HttpModule, PanelModule, routing, FormsModule, ReactiveFormsModule, CustomButtonModule],
+    imports : [ BrowserModule,
+                PhotoModule,
+                HttpModule, 
+                PanelModule,
+                routing, 
+                FormsModule, 
+                ReactiveFormsModule, 
+                CustomButtonModule, 
+                ModalModule],
     declarations : [AppComponent, RegisterComponent, ListComponent],
     bootstrap : [ AppComponent ]
 })
